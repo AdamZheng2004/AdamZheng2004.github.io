@@ -1,21 +1,22 @@
+<!--boss mode-->
+
+
 <!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="utf-8">
 	<link rel='icon' href='favicon.ico' type='image/x-icon'>
-    <title>Pong</title>
+    <title>Pong v Boss</title>
 	<!-- css file -->
-    <link rel="stylesheet" href="style.css">  
+    <link rel="stylesheet" href="boss.css">  
   </head>
   
   <body>
-	<div id = "controlpanel2" class = "controls" onclick><a href= "boss.html">Boss Fight</a></div>
-	
+	<div id = "controlpanel2" class = "controls" onclick><a href= "index.html">Two player pong</a></div>
+  
 	<div id = "controlpanel">
 		<div onclick = "startGame()" id = "start" class = "controls">
 		Start Game</div>
-		<div onclick = "stopGame()" id = "stop" class = "controls">
-		Stop Game</div>
 		<div onclick = "pauseGame()" id = "pause" class = "controls">
 		Pause Game</div>
 		<div onclick = "resumeGame()" id = "resume" class = "controls">
@@ -23,19 +24,25 @@
 	</div>
   
 	<div id = "header">
-		<h1 id = "title">Pong</h1>
-		<h2 id = "left">Score 1: <span id = "score1">0</span></h2>
-		<h2 id = "right">Score 2: <span id = "score2">0</span></h2>
+		<h1 class = "title">Boss level: </h1>
+		<div id = "level"> </div>
+		<h2 id = "left">Player Hp: <span id = "playerHp">3</span>
+			<span class = "unhidden" id = "heart1">&hearts;</span>
+			<span class = "unhidden" id = "heart2">&hearts;</span>
+			<span class = "unhidden" id = "heart3">&hearts;</span></h2>
+		<h2 id = "right">Boss Hp: <span id = "bossHp">5</span></h2>
 	</div>
 	
 	<div id = "gameBoard">
 		<div id = "paddle1" class = "paddle">
+		<img src="images/player.png" alt="player" width="40" height="150">
 		</div>
 		
 		<div id = "ball">
 		</div>
 		
-		<div id = "paddle2" class = "paddle">
+		<div id = "boss">
+		<img src="images/boss.png" alt="boss" id = "bossImg">
 		</div>
 	
 	</div>
@@ -47,13 +54,13 @@
 		<div id = "boundaryMessage" class = "hidden">
 		<img id = "x" src = "images/x.png" alt = "close" onclick = "continueGame()">
 		<h1 class = "titletext" id = "message">Hello</h1>
-		<p class = "titletext" id = "message2"></p>
+		<button class = "titletext" id = "message2" onclick = "upgradeBoss()">Hello</button>
 		</div>
 	</div>
 	
 	
 	<!-- js file -->
-    <script src="pong.js"></script>
+    <script src="boss.js"></script>
   </body>
   
 </html>

@@ -15,7 +15,6 @@ a {
 	
 }
 
-
 #header {
 	width: 100%;
 	height: 12vh;
@@ -38,13 +37,18 @@ a {
 	right: 30px;
 }
 
-#title {
-	text-align: center;
-	
+.title {
+	text-align: center;	
+	margin-bottom: 0;
+}
+
+#level {
+	text-align: center;	
+	font-size:2em;
 }
 
 .paddle {
-	width: 10px;
+	width: 40px;
 	height: 150px;
 }
 
@@ -55,11 +59,17 @@ a {
 	background-color: green;
 }
 
-#paddle2 {
+#boss {
 	position: absolute;
 	right: 0px;
-	top: 35vh;
-	background-color: blue;
+	background-color: red;
+	height: 100%;
+	width: 20px;
+}
+
+#bossImg {
+	width: 20px;
+	height: 100%;
 }
 
 #ball {
@@ -116,6 +126,10 @@ a {
 	display: block;
 }
 
+span.unhidden {
+	display: inline;
+}
+
 #lightbox {
 	position: fixed;
 	top: 0px;
@@ -151,6 +165,21 @@ a {
 	z-index: 2;
 	padding: 30px;
 	border: thick solid #a4c5c6;
+}
+
+#message {
+	text-align: center;
+}
+
+#message2 {
+	text-align: center;
+	font-size: 25px;
+	background-color: white;
+    color: green;
+    border: 2px solid #4CAF50;
+	position: absolute;
+    top: 50%;
+    left: 40%;
 }
 
 /**** end of lightbox css ****/
