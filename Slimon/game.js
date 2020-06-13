@@ -18,7 +18,19 @@ const levels = [
 	 "animate", "animate", "animate", "animate", "animate",
 	 "water", "bridge", "water", "water", "water",
 	 "", "", "", "fence", "",
-	 "crown", "rock", "", "", "slimeup"]
+	 "crown", "rock", "", "", "slimeup"],
+	 
+	["", "fence", "", "tree", "crown",
+	 "", "tree", "", "rock", "",
+	 "", "rock", "animate", "animate", "animate",
+	 "fenceside", "tree", "", "rock", "",
+	 "portal", "rock", "", "fence", "slimeup"],
+	 
+	 ["", "fence", "", "fence", "",
+	 "", "tree", "tree", "rock", "",
+	 "animate", "animate", "animate", "animate", "animate",
+	 "", "rock", "", "rock", "",
+	 "slimeup", "rock", "crown", "tree", "flag"]
 	//end of levels
  
  ];
@@ -31,6 +43,8 @@ var crownOn = false; //is the crown on?
 var currentLocationOfSlime = 0;
 var currentAnimation; //allows 1 animation per level
 var widthOfBoard = 5;
+
+var restarted = false;
 
 //start game
 window.addEventListener("load", function () {
@@ -106,7 +120,7 @@ function tryToMove(direction) {
 	//if the obstacle is not passable, don't move
 	if (noPassObsticales.includes(nextClass)) { return; }
 	
-	// if it is a ence, and there is no crown equiped, don't move
+	// if it is a fence, and there is no crown equiped, don't move
 	if (!crownOn && nextClass.includes("fence")) { return; }
 	
 	//if there is a fence and crown is on, move two spaces with animation
@@ -194,6 +208,12 @@ function tryToMove(direction) {
 		return;
 	}
 	
+		//if it is an enemy 
+	if (nextClass.includes("flag")) {
+		document.getElementById("win").style.display = "block";
+		return;
+	}
+	
 	//hit portal move up one level if needed
 	levelUp(nextClass);
 	
@@ -231,7 +251,7 @@ function loadLevel() {
 	animateBoxes = document.querySelectorAll(".animate");
 	
 	animateEnemy(animateBoxes, 0, "right");
-	
+
 }//loadLevel
 
 
@@ -239,8 +259,7 @@ function loadLevel() {
 //boxes - array of grid boxes that include animation
 //index - current location of animation
 //direction - current direction of animation
-function animateEnemy(boxes, index, direction) {
-	
+function animateEnemy(boxes, index, direction) {	
 	//exit function if no animation
 	if (boxes.length <= 0){
 		return;
@@ -284,6 +303,15 @@ function animateEnemy(boxes, index, direction) {
 	
 	currentAnimation = setTimeout(function() {
 		animateEnemy(boxes, index, direction);
+		
+	//if enemy hits slime
+	if ((boxes[index].className).includes("slime")) {
+		document.getElementById("lose").style.display = "block";
+		return;
+	}
+
 	},750);
 	
 }//animateEnemy
+
+
